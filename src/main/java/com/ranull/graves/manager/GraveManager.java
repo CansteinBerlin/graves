@@ -232,10 +232,6 @@ public final class GraveManager {
             plugin.getIntegrationManager().getItemsAdder().removeFurniture(grave);
         }
 
-        if (plugin.getIntegrationManager().hasOraxen()) {
-            plugin.getIntegrationManager().getOraxen().removeFurniture(grave);
-        }
-
         if (plugin.getIntegrationManager().hasPlayerNPC()) {
             plugin.getIntegrationManager().getPlayerNPC().removeCorpse(grave);
         }
@@ -266,12 +262,6 @@ public final class GraveManager {
 
             case ITEMSADDER: {
                 plugin.getIntegrationManager().getItemsAdder().removeEntityData(entityData);
-
-                break;
-            }
-
-            case ORAXEN: {
-                plugin.getIntegrationManager().getOraxen().removeEntityData(entityData);
 
                 break;
             }
@@ -360,10 +350,6 @@ public final class GraveManager {
 
         if (plugin.getIntegrationManager().hasItemsAdder()) {
             plugin.getIntegrationManager().getItemsAdder().createFurniture(location, grave);
-        }
-
-        if (plugin.getIntegrationManager().hasOraxen()) {
-            plugin.getIntegrationManager().getOraxen().createFurniture(location, grave);
         }
 
         if (plugin.getIntegrationManager().hasPlayerNPC()) {

@@ -77,7 +77,7 @@ public class Graves extends JavaPlugin {
         graveManager = new GraveManager(this);
         graveyardManager = new GraveyardManager(this);
 
-        registerMetrics();
+        //registerMetrics();
         registerCommands();
         registerListeners();
         registerRecipes();

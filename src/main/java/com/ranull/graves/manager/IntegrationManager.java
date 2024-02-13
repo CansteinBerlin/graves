@@ -20,7 +20,6 @@ public final class IntegrationManager {
     private FurnitureEngine furnitureEngine;
     private ProtectionLib protectionLib;
     private ItemsAdder itemsAdder;
-    private Oraxen oraxen;
     private ChestSort chestSort;
     private MiniMessage miniMessage;
     private MineDown mineDown;
@@ -49,7 +48,6 @@ public final class IntegrationManager {
         loadFurnitureEngine();
         loadProtectionLib();
         loadItemsAdder();
-        loadOraxen();
         loadMiniMessage();
         loadMineDown();
         loadChestSort();
@@ -67,10 +65,6 @@ public final class IntegrationManager {
 
         if (furnitureEngine != null) {
             furnitureEngine.unregisterListeners();
-        }
-
-        if (oraxen != null) {
-            oraxen.unregisterListeners();
         }
 
         if (placeholderAPI != null) {
@@ -128,10 +122,6 @@ public final class IntegrationManager {
 
     public ItemsAdder getItemsAdder() {
         return itemsAdder;
-    }
-
-    public Oraxen getOraxen() {
-        return oraxen;
     }
 
     public MiniMessage getMiniMessage() {
@@ -192,10 +182,6 @@ public final class IntegrationManager {
 
     public boolean hasItemsAdder() {
         return itemsAdder != null;
-    }
-
-    public boolean hasOraxen() {
-        return oraxen != null;
     }
 
     public boolean hasMiniMessage() {
@@ -414,21 +400,6 @@ public final class IntegrationManager {
             }
         } else {
             itemsAdder = null;
-        }
-    }
-
-    private void loadOraxen() {
-        if (plugin.getConfig().getBoolean("settings.integration.oraxen.enabled")) {
-            Plugin oraxenPlugin = plugin.getServer().getPluginManager().getPlugin("Oraxen");
-
-            if (oraxenPlugin != null && oraxenPlugin.isEnabled()) {
-                oraxen = new Oraxen(plugin, oraxenPlugin);
-
-                plugin.integrationMessage("Hooked into " + oraxenPlugin.getName() + " "
-                        + oraxenPlugin.getDescription().getVersion() + ".");
-            }
-        } else {
-            oraxen = null;
         }
     }
 

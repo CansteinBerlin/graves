@@ -77,9 +77,6 @@ public final class BlockManager {
                 plugin.getIntegrationManager().getItemsAdder().createBlock(location, grave);
             }
 
-            if (plugin.getIntegrationManager().hasOraxen()) {
-                plugin.getIntegrationManager().getOraxen().createBlock(location, grave);
-            }
 
             if (material != null) {
                 plugin.debugMessage("Placing grave block for " + grave.getUUID() + " at "
@@ -140,11 +137,6 @@ public final class BlockManager {
         if (plugin.getIntegrationManager().hasItemsAdder() && plugin.getIntegrationManager().getItemsAdder()
                 .isCustomBlock(location)) {
             plugin.getIntegrationManager().getItemsAdder().removeBlock(location);
-        }
-
-        if (plugin.getIntegrationManager().hasOraxen() && plugin.getIntegrationManager().getOraxen()
-                .isCustomBlock(location)) {
-            plugin.getIntegrationManager().getOraxen().removeBlock(location);
         }
 
         if (location.getWorld() != null) {

@@ -9,10 +9,12 @@ import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import scala.sys.Prop;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -43,9 +45,15 @@ public final class SkinUtil {
 
                 if (propertyMap.containsKey("textures")) {
                     Collection<Property> propertyCollection = propertyMap.get("textures");
-
-                    return !propertyCollection.isEmpty()
-                            ? propertyCollection.stream().findFirst().get().getValue() : null;
+                    if(propertyCollection.isEmpty()) return null;
+                    try{
+                        Field field = Property.class.getDeclaredField("value");
+                        field.setAccessible(true);
+                        return (String) field.get(new ArrayList<Property>(propertyCollection).get(0));
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
+                        e.printStackTrace();
+                        return null;
+                    }
                 }
             }
         } else {
@@ -77,8 +85,15 @@ public final class SkinUtil {
                 if (propertyMap.containsKey("textures")) {
                     Collection<Property> propertyCollection = propertyMap.get("textures");
 
-                    return !propertyCollection.isEmpty()
-                            ? propertyCollection.stream().findFirst().get().getSignature() : null;
+                    if(propertyCollection.isEmpty()) return null;
+                    try{
+                        Field field = Property.class.getDeclaredField("signature");
+                        field.setAccessible(true);
+                        return (String) field.get(new ArrayList<Property>(propertyCollection).get(0));
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
+                        e.printStackTrace();
+                        return null;
+                    }
                 }
             }
         }
